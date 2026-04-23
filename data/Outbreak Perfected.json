@@ -1,0 +1,18 @@
+{
+    "id": 0,
+    "name": "Outbreak Perfected",
+    "author": "Squeeg",
+    "creators": ["Squeeg, Hypersonic_Time"],
+    "verifier": "Squeeg",
+    "verification": "https://www.youtube.com/watch?v=7ewj_I-P5Pc",
+    "percentToQualify": 90,
+    "password": "Rake/CBF/No RT",
+    "records": [
+        {
+            "user": "G1rcy",
+            "link": "https://youtu.be/_tbU-M-ko70?si=4W8fCyM1l035NyHo",
+            "hz": 360,
+            "percent": 100
+        }
+    ]
+}
