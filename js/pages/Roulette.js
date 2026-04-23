@@ -1,5 +1,5 @@
 import { fetchList } from '../content.js';
-import { getThumbnailFromId, getYoutubeIdFromUrl, shuffle } from '../util.js';
+import { getThumbnailFromId, getYoutubeIdFromUrl, shuffle, getLevelThumbnailR } from '../util.js';
 
 import Spinner from '../components/Spinner.js';
 import Btn from '../components/Btn.js';
@@ -13,7 +13,7 @@ export default {
         <main v-else class="page-roulette">
             <div class="sidebar">
                 <p class="type-label-md" style="color: #aaa">
-                    Shameless copy of the Extreme Demon Roulette by <a href="https://matcool.github.io/extreme-demon-roulette/" target="_blank">matcool</a>.
+                    Copy of the Extreme Demon Roulette by <a href="https://matcool.github.io/extreme-demon-roulette/" target="_blank">matcool</a>.
                 </p>
                 <form class="options">
                     <div class="check">
@@ -43,9 +43,11 @@ export default {
                         <!-- Completed Levels -->
                         <div class="level" v-for="(level, i) in levels.slice(0, progression.length)">
                             <a :href="level.video" class="video">
-                                <img :src="getThumbnailFromId(getYoutubeIdFromUrl(level.video))" alt="">
+                            	<!-- wnioskuj -->
+                                <!-- width="1280" height="720" -->
+                                <img :src="getThumbnailFromId(getYoutubeIdFromUrl(level.video))" alt="" >
                             </a>
-                            <div class="meta">
+                            <div class="meta" :style="getLevelThumbnailR(i, levels)">
                                 <p>#{{ level.rank }}</p>
                                 <h2>{{ level.name }}</h2>
                                 <p style="color: #00b54b; font-weight: 700">{{ progression[i] }}%</p>
@@ -56,10 +58,31 @@ export default {
                             <a :href="currentLevel.video" target="_blank" class="video">
                                 <img :src="getThumbnailFromId(getYoutubeIdFromUrl(currentLevel.video))" alt="">
                             </a>
-                            <div class="meta">
+                            <div class="meta" :style="getLevelThumbnailR(this.progression.length, levels)">
                                 <p>#{{ currentLevel.rank }}</p>
                                 <h2>{{ currentLevel.name }}</h2>
-                                <p>{{ currentLevel.id }}</p>
+                                <div class="button-holder" style="justify-content: flex-start; align-items: normal;">
+                                <!-- money folder -->
+                                    <a v-if="currentLevel.scratchLink != null" :href="currentLevel.scratchLink" target="_blank">
+                                        <button class="link-button" style="background-color: #f7a935; border-color: #f7a935;">
+                                            <img src="../assets/scratchS.svg" class="button-center" style="width:70%;">
+                                        </button>
+                                    </a>
+                                    <a v-if="currentLevel.turbowarpLink != null" :href="currentLevel.turbowarpLink" target="_blank">
+                                        <button class="link-button" style="background-color: #ff4c4c; border-color: #ff4c4c;">
+                                            <img src="../assets/turbowarpT.svg" class="button-center" style="width:110%;">
+                                        </button>
+                                    </a>
+                                    <a v-if="currentLevel.itchLink != null" :href="currentLevel.itchLink" target="_blank">
+                                        <button class="link-button" style="background-color: #fa5c5c; border-color: #fa5c5c;">
+                                            <img src="../assets/itchioShop.svg" class="button-center" style="width:100%;"></button>
+                                    </a>
+                                    <a v-if="currentLevel.itchLink2 != null" :href="currentLevel.itchLink2" target="_blank">
+                                        <button class="link-button" style="background-color: #7d2e2e; border-color: #7d2e2e;">
+                                            <p class="button-center" style="width: 100%;">LDM</p>
+                                        </button>
+                                    </a>                                
+                                </div>
                             </div>
                             <form class="actions" v-if="!givenUp">
                                 <input type="number" v-model="percentage" :placeholder="placeholder" :min="currentPercentage + 1" max=100>
@@ -73,17 +96,40 @@ export default {
                             <p>Number of levels: {{ progression.length }}</p>
                             <p>Highest percent: {{ currentPercentage }}%</p>
                             <Btn v-if="currentPercentage < 99 && !hasCompleted" @click.native.prevent="showRemaining = true">Show remaining levels</Btn>
+                            <article v-if="hasCompleted"><article v-if="onWin"></article></article>
                         </div>
                         <!-- Remaining Levels -->
                         <template v-if="givenUp && showRemaining">
-                            <div class="level" v-for="(level, i) in levels.slice(progression.length + 1, levels.length - currentPercentage + progression.length)">
+                            <div class="level" v-for="(level, i) in levels.slice(progression.length + 1, levels.length - currentPercentage + progression.length)" :key="level.id || i">
                                 <a :href="level.video" target="_blank" class="video">
                                     <img :src="getThumbnailFromId(getYoutubeIdFromUrl(level.video))" alt="">
                                 </a>
-                                <div class="meta">
+                                <div class="meta" :style="getLevelThumbnailR(currentPercentage + 1 + i, levels)">
                                     <p>#{{ level.rank }}</p>
                                     <h2>{{ level.name }}</h2>
                                     <p style="color: #d50000; font-weight: 700">{{ currentPercentage + 2 + i }}%</p>
+                                                                    <div class="button-holder" style="justify-content: flex-start; align-items: normal;">
+                                <!-- money folder -->
+                                    <a v-if="level.scratchLink != null" :href="level.scratchLink" target="_blank">
+                                        <button class="link-button" style="background-color: #f7a935; border-color: #f7a935;">
+                                            <img src="../assets/scratchS.svg" class="button-center" style="width:70%;">
+                                        </button>
+                                    </a>
+                                    <a v-if="level.turbowarpLink != null" :href="level.turbowarpLink" target="_blank">
+                                        <button class="link-button" style="background-color: #ff4c4c; border-color: #ff4c4c;">
+                                            <img src="../assets/turbowarpT.svg" class="button-center" style="width:110%;">
+                                        </button>
+                                    </a>
+                                    <a v-if="level.itchLink != null" :href="level.itchLink" target="_blank">
+                                        <button class="link-button" style="background-color: #fa5c5c; border-color: #fa5c5c;">
+                                            <img src="../assets/itchioShop.svg" class="button-center" style="width:100%;"></button>
+                                    </a>
+                                    <a v-if="level.itchLink2 != null" :href="level.itchLink2" target="_blank">
+                                        <button class="link-button" style="background-color: #7d2e2e; border-color: #7d2e2e;">
+                                            <p class="button-center" style="width: 100%;">LDM</p>
+                                        </button>
+                                    </a>                                
+                                </div>
                                 </div>
                             </div>
                         </template>
@@ -131,6 +177,9 @@ export default {
     },
     computed: {
         currentLevel() {
+            console.error("aw shit");
+            console.error(this.levels[this.progression.length].video);
+            console.error(this.levels[this.progression.length].scratchLink);
             return this.levels[this.progression.length];
         },
         currentPercentage() {
@@ -154,6 +203,7 @@ export default {
         },
     },
     methods: {
+        getLevelThumbnailR,
         shuffle,
         getThumbnailFromId,
         getYoutubeIdFromUrl,
@@ -184,14 +234,16 @@ export default {
                 id: lvl.id,
                 name: lvl.name,
                 video: lvl.verification,
+                scratchLink: lvl.scratchLink,
+                turbowarpLink: lvl.turbowarpLink,
+                itchLink: lvl.itchLink,
+                itchLink2: lvl.itchLink2,
             }));
             const list = [];
             if (this.useMainList) list.push(...fullListMapped.slice(0, 75));
             if (this.useExtendedList) {
                 list.push(...fullListMapped.slice(75, 150));
             }
-
-            // random 100 levels
             this.levels = shuffle(list).slice(0, 100);
             this.showRemaining = false;
             this.givenUp = false;
@@ -282,7 +334,7 @@ export default {
             );
             const a = document.createElement('a');
             a.href = URL.createObjectURL(file);
-            a.download = 'tsl_roulette';
+            a.download = 'sgdl_roulette';
             a.click();
             URL.revokeObjectURL(a.href);
         },
