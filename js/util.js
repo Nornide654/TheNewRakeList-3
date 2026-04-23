@@ -4,7 +4,7 @@ export function getYoutubeIdFromUrl(url) {
         /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&]*).*/,
     )?.[1] ?? '';
 }
-// shout out mozillia docs LOL
+// ilovegoodies445
 // nah nvm
 export function getRandomInt(max) {
   return Math.floor(Math.random() * max);
