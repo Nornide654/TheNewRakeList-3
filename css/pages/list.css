@@ -9,7 +9,38 @@
 .page-list .meta-container {
     padding-right: 2rem;
 }
-
+.desc {
+    text-align: center;
+}
+.link-button {
+    margin-left: 0.5em;
+    height: 50px;
+    width: 50px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: white;
+    border-radius: 25%;
+}
+.link-button:hover {
+  filter: brightness(150%);
+}
+.button-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin: auto;
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+      text-align: center;
+      width: 60%;
+}
+.button-holder {
+/* money folder */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
 .page-list .list {
     table-layout: auto;
 }
@@ -19,6 +50,7 @@
 }
 .page-list .list .level {
     width: 100%;
+    color: #fff;
 }
 .page-list .list .level button {
     background-color: var(--color-background);
@@ -38,18 +70,20 @@
 }
 .page-list .list .level button:hover {
     background-color: var(--color-background-hover);
-    color: var(--color-on-background-hover);
 }
 .page-list .list .level.active button {
+    border: 3px solid var(--color-primary);
     background-color: var(--color-primary);
-    color: var(--color-on-primary);
+    color: var(--color-on-background);
 }
 .page-list .level-container .level {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding-right: 2rem;
-    max-width: 48rem;
+	padding-right: 4rem;
+    padding-left: 4rem;
+    width: 100%;
+	justify-self: center;
 }
 .page-list .level-container .level .level-authors {
     display: grid;
@@ -125,4 +159,12 @@
 }
 .page-list .meta .editors li a:hover {
     text-decoration: underline;
+}
+.cl {
+    margin-left: 24px;
+    color: #808080;
+}
+.cl clw {
+    color: var(--color-on-background);
+	font-weight: 550;
 }
