@@ -35,7 +35,7 @@
     display: block;
     width: 100%;
 }
-.page-leaderboard .board .rank {
+.page-leaderboard .board .rank .flag {
     padding-block: 1rem;
     text-align: end;
 }
@@ -81,7 +81,8 @@
 .page-leaderboard .player .table a {
     padding-block: 1rem;
 }
-.page-leaderboard .player .table .rank p,
+
+.page-leaderboard .player .table .rank .flag p,
 .page-leaderboard .player .table .score p {
     text-align: end;
 }
