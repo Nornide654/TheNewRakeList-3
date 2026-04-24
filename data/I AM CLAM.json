@@ -3,10 +3,10 @@
     "name": "I AM CLAM",
     "author": "BLJ_Broken",
     "creators": ["BLJ_Broken"],
-    "verifier": "BLJ_Broken",
-    "verification": "https://www.youtube.com/watch?v=jNrgt1jmKeQ",
+    "verifier": "Squeeg",
+    "verification": "https://youtu.be/_5GNYa_v6qE?si=AmpdEeG9cXp6YNdS",
     "percentToQualify": 100,
-    "password": "Alternating/60FPS",
+    "password": "Jitter/60FPS",
     "records": [
     ]
 }
