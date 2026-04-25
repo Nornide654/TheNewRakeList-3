@@ -21,13 +21,13 @@
     },
     {
         "role": "admin",
-        "name": "Sandwich",
-        "link": "https://www.youtube.com/channel/UCQUD2wonWp337xa4p-NPy0w"
+        "name": "AstroGuy",
+        "link": "https://www.youtube.com/@asterism09"
     },
     {
         "role": "admin",
         "name": "Shafik",
-        "link": "https://www.youtube.com/channel/UCQUD2wonWp337xa4p-NPy0w"
+        "link": "https://www.youtube.com/@Shafikdabestv1"
     },
     {
         "role": "admin",
@@ -43,6 +43,11 @@
         "role": "helper",
         "name": "Realtoreeeeee",
         "link": "www.youtube.com/channel/UCJ5bFvT3tFWaM_LoJdlYKAw"
+    },
+    {
+        "role": "helper",
+        "name": "Hypersonic_time",
+        "link": "https://scratch.mit.edu/users/hypersonic_time/"
     },
     {
         "role": "helper",
